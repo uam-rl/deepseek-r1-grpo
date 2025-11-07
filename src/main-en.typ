@@ -8,8 +8,8 @@
   align: horizon,
   config-common(handout: sys.inputs.at("handout", default: "false") == "true"),
   config-info(
-    title: [State of Reinforcement Learning],
-    subtitle: [Late 2025 Overview],
+    title: [DeepSeek R1 and GRPO],
+    subtitle: [Group Relative Policy Optimization],
     author: [UAM RL Team],
   ),
   footer-a: [UAM RL Team],
@@ -25,66 +25,75 @@
 
 = Introduction
 
-== What is Reinforcement Learning?
+== What is DeepSeek R1?
 
-Reinforcement Learning (RL) is a type of machine learning where an agent learns to make decisions by interacting with an environment.
+DeepSeek R1 is an advanced language model developed with enhanced reasoning capabilities.
+
+Key features:
+- Step-by-step reasoning capabilities
+- Optimized architecture
+- RLHF training
+- Competitive performance
+
+== What is GRPO?
+
+Group Relative Policy Optimization (GRPO) is a policy optimization algorithm.
 
 Key concepts:
-- Agent
-- Environment
-- Actions
-- Rewards
-- Policy
-
-== RL Applications
-
-Main application areas in 2025:
-
-- Robotics and autonomous systems
-- Game playing and simulations
-- Resource optimization
-- Healthcare and drug discovery
-- Finance and trading
-
-= Recent Advances
-
-== Model-Based RL
-
-Recent progress in model-based reinforcement learning:
-
-- Improved world models
-- Better sample efficiency
-- Integration with large language models
-- Hybrid approaches combining model-free and model-based methods
-
-== Policy Gradient Methods
-
-Key developments:
-
-- Trust region optimization
-- Actor-critic architectures
-- Parallelized training methods
-- Stability improvements
-
-= Future Directions
-
-== Open Challenges
-
-Current challenges in RL research:
-
+- Group relative optimization
+- Improvement over PPO
 - Sample efficiency
-- Generalization across tasks
-- Safety and robustness
-- Scaling to complex environments
-- Interpretability
+- Training stability
 
-== Conclusion
+= GRPO in Detail
 
-Summary:
+== GRPO Fundamentals
 
-- RL continues to advance rapidly
-- New applications emerging
-- Significant challenges remain
-- Exciting opportunities ahead
+Core principles of the algorithm:
+
+- Within-group comparison
+- Relative reward normalization
+- Variance reduction
+- Better convergence
+
+== GRPO Advantages
+
+Benefits over traditional methods:
+
+- Greater stability
+- Fewer sensitive hyperparameters
+- Better data utilization
+- Improved scalability
+
+= DeepSeek R1 and GRPO
+
+== Integration
+
+How GRPO improves R1 training:
+
+- Reasoning optimization
+- Human preference alignment
+- More efficient training
+- Better generalization
+
+== Results
+
+Observed performance metrics:
+
+- Improvement in reasoning benchmarks
+- Reduced hallucinations
+- Greater consistency
+- Computational efficiency
+
+= Conclusion
+
+== Summary
+
+Key takeaways:
+
+- DeepSeek R1 demonstrates advances in reasoning
+- GRPO offers robust optimization
+- Promising combination for LLMs
+- Future research directions
 
 Thank you for your attention!

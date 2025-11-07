@@ -8,8 +8,8 @@
   align: horizon,
   config-common(handout: sys.inputs.at("handout", default: "false") == "true"),
   config-info(
-    title: [Estado del Aprendizaje por Refuerzo],
-    subtitle: [Panorama a Finales de 2025],
+    title: [DeepSeek R1 y GRPO],
+    subtitle: [Optimización de Política con Recompensa de Grupo],
     author: [Equipo UAM RL],
   ),
   footer-a: [Equipo UAM RL],
@@ -25,66 +25,75 @@
 
 = Introducción
 
-== ¿Qué es el Aprendizaje por Refuerzo?
+== ¿Qué es DeepSeek R1?
 
-El Aprendizaje por Refuerzo (RL) es un tipo de aprendizaje automático donde un agente aprende a tomar decisiones mediante la interacción con un entorno.
+DeepSeek R1 es un modelo de lenguaje avanzado desarrollado con técnicas de razonamiento mejorado.
+
+Características principales:
+- Capacidades de razonamiento paso a paso
+- Arquitectura optimizada
+- Entrenamiento con RLHF
+- Rendimiento competitivo
+
+== ¿Qué es GRPO?
+
+Group Relative Policy Optimization (GRPO) es un algoritmo de optimización de políticas.
 
 Conceptos clave:
-- Agente
-- Entorno
-- Acciones
-- Recompensas
-- Política
+- Optimización relativa de grupo
+- Mejora sobre PPO
+- Eficiencia de muestras
+- Estabilidad en entrenamiento
 
-== Aplicaciones de RL
+= GRPO en Detalle
 
-Principales áreas de aplicación en 2025:
+== Fundamentos de GRPO
 
-- Robótica y sistemas autónomos
-- Juegos y simulaciones
-- Optimización de recursos
-- Salud y descubrimiento de fármacos
-- Finanzas y trading
+Principios básicos del algoritmo:
 
-= Avances Recientes
+- Comparación dentro de grupos
+- Normalización relativa de recompensas
+- Reducción de varianza
+- Mejor convergencia
 
-== RL Basado en Modelos
+== Ventajas de GRPO
 
-Progreso reciente en aprendizaje por refuerzo basado en modelos:
+Beneficios sobre métodos tradicionales:
 
-- Modelos del mundo mejorados
-- Mejor eficiencia en muestras
-- Integración con modelos de lenguaje grandes
-- Enfoques híbridos que combinan métodos con y sin modelo
+- Mayor estabilidad
+- Menos hiperparámetros sensibles
+- Mejor uso de datos
+- Escalabilidad mejorada
 
-== Métodos de Gradiente de Política
+= DeepSeek R1 y GRPO
 
-Desarrollos clave:
+== Integración
 
-- Optimización de región de confianza
-- Arquitecturas actor-crítico
-- Métodos de entrenamiento paralelizados
-- Mejoras en estabilidad
+Cómo GRPO mejora el entrenamiento de R1:
 
-= Direcciones Futuras
+- Optimización de razonamiento
+- Alineación con preferencias humanas
+- Entrenamiento más eficiente
+- Mejor generalización
 
-== Desafíos Abiertos
+== Resultados
 
-Desafíos actuales en investigación de RL:
+Métricas de rendimiento observadas:
 
-- Eficiencia en muestras
-- Generalización entre tareas
-- Seguridad y robustez
-- Escalado a entornos complejos
-- Interpretabilidad
+- Mejora en benchmarks de razonamiento
+- Reducción de alucinaciones
+- Mayor consistencia
+- Eficiencia computacional
 
-== Conclusión
+= Conclusión
 
-Resumen:
+== Resumen
 
-- RL continúa avanzando rápidamente
-- Nuevas aplicaciones emergentes
-- Desafíos significativos permanecen
-- Emocionantes oportunidades por delante
+Puntos clave:
+
+- DeepSeek R1 demuestra avances en razonamiento
+- GRPO ofrece optimización robusta
+- Combinación prometedora para LLMs
+- Futuras direcciones de investigación
 
 Gracias por su atención!

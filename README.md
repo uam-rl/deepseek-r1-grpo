@@ -2,35 +2,35 @@
 
 ---
 
-# State of Reinforcement Learning - Late 2025 Overview
+# DeepSeek R1 and GRPO
 
-Presentation slides for the UAM RL Team's overview of the state of reinforcement learning in late 2025.
+Presentation slides about DeepSeek R1 and Group Relative Policy Optimization (GRPO) by the UAM RL Team.
 
 ## View Slides
 
 ### HTML Slides (Interactive)
 
 #### Spanish
-- **16:9**: https://uam-rl.github.io/state-of-rl-late-2025/
-- **4:3**: https://uam-rl.github.io/state-of-rl-late-2025/4-3.html
+- **16:9**: https://uam-rl.github.io/deepseek-r1-grpo/
+- **4:3**: https://uam-rl.github.io/deepseek-r1-grpo/4-3.html
 
 #### English
-- **16:9**: https://uam-rl.github.io/state-of-rl-late-2025/en.html
-- **4:3**: https://uam-rl.github.io/state-of-rl-late-2025/en-4-3.html
+- **16:9**: https://uam-rl.github.io/deepseek-r1-grpo/en.html
+- **4:3**: https://uam-rl.github.io/deepseek-r1-grpo/en-4-3.html
 
 ### PDF Downloads
 
 #### Spanish
-- **Slides 16:9**: https://uam-rl.github.io/state-of-rl-late-2025/diapositivas.pdf
-- **Slides 4:3**: https://uam-rl.github.io/state-of-rl-late-2025/diapositivas-4-3.pdf
-- **Handout 16:9**: https://uam-rl.github.io/state-of-rl-late-2025/handout.pdf
-- **Handout 4:3**: https://uam-rl.github.io/state-of-rl-late-2025/handout-4-3.pdf
+- **Slides 16:9**: https://uam-rl.github.io/deepseek-r1-grpo/diapositivas.pdf
+- **Slides 4:3**: https://uam-rl.github.io/deepseek-r1-grpo/diapositivas-4-3.pdf
+- **Handout 16:9**: https://uam-rl.github.io/deepseek-r1-grpo/handout.pdf
+- **Handout 4:3**: https://uam-rl.github.io/deepseek-r1-grpo/handout-4-3.pdf
 
 #### English
-- **Slides 16:9**: https://uam-rl.github.io/state-of-rl-late-2025/slides-en.pdf
-- **Slides 4:3**: https://uam-rl.github.io/state-of-rl-late-2025/slides-en-4-3.pdf
-- **Handout 16:9**: https://uam-rl.github.io/state-of-rl-late-2025/handout-en.pdf
-- **Handout 4:3**: https://uam-rl.github.io/state-of-rl-late-2025/handout-en-4-3.pdf
+- **Slides 16:9**: https://uam-rl.github.io/deepseek-r1-grpo/slides-en.pdf
+- **Slides 4:3**: https://uam-rl.github.io/deepseek-r1-grpo/slides-en-4-3.pdf
+- **Handout 16:9**: https://uam-rl.github.io/deepseek-r1-grpo/handout-en.pdf
+- **Handout 4:3**: https://uam-rl.github.io/deepseek-r1-grpo/handout-en-4-3.pdf
 
 ## Building Locally
 
