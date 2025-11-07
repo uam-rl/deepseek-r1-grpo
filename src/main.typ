@@ -107,7 +107,7 @@ def backup(path, value):
 
 == REINFORCE
 
-Objetivo: maximize expected return of a stochastic policy $pi_alpha (a | s)$
+Objetivo: maximize expected return of a stochastic policy $pi_theta (a | s)$
 $
   J(theta) = E_tau [R(tau)]
 $
@@ -178,69 +178,165 @@ Esto nos permite reescribir el teorema considerando solo las recompensas futuras
 
 #pagebreak(weak: true)
 
+== REINFORCE con baseline
+
+Tenemos
+$
+  EE_(s_t, a_t) [gradient_theta log pi_theta (a_t | s_t) b(s_t)]
+  &= EE_(s_t)[
+    EE_(a_t|s_t) [gradient_theta log pi_theta (a_t | s_t) b(s_t) | s_t]
+  ]\
+  &=  EE_(s_t)[
+    sum_(a_t) pi_theta (a_t | s_t) gradient_theta log pi_theta (a_t | s_t)
+  ] \
+  &=  EE_(s_t)[
+    gradient_theta sum_(a_t) pi_theta (a_t | s_t)
+  ] \
+  &=  EE_(s_t)[
+    1
+  ] \
+  &= 0
+$
+#pagebreak(weak: true)
+
+Lo cual nos permite usar una fórmula usualmente con menos varianza tomando
+$b(dot.c)$ adecuada
+
+$
+  EE[gradient_theta log pi_theta (a_t | s_t)(G_t - b(s_t))]
+  = EE[gradient_theta log pi_theta (a_t | s_t)G_t]
+$
+
+=== Ventaja
+Concretamente, podemos usar:
+$
+  A_t = Q_pi (s_t, a_t) - V_pi (s_t)
+$
+
+== Ejemplo conceptual: CartPole
+
+- Consigue $s_0$
+En cada $t$
+- Dale a la red neuronal (política) una $s_t$ para muestrear una $a_t$
+- Obten $r_t, s_(t+1)$
+
+Al finál obtendrás una trallectoria, $tau$.
+
+Luego, para cada paso de la trallectoria, calcula $G_t$, y usa una value
+function paramétrica y estima la advantage:
+$
+  hat(A_t) = G_t - V_phi (s_t)
+$
+#pagebreak(weak: true)
+
+Entonces, nuestras funciones loss son:
+$
+  L_"policy" &= - 1/T sum_(t = 0)^(T-1) log pi_theta (a_t | s_t) \
+  L_"value"  &= - 1/T sum_(t = 0)^(T-1) (V_phi (s_t) - G_t)^2
+$
+
+#pagebreak(weak: true)
+
+Entonces, para optimizar:
++ Tomamos un paso de gradiente para minimizar $L_"policy"$
++ Tomamos un paso de gradiente para minimizar $L_"value"$
++ Repetir con nuevas roll outs
+
+
+== Algo de terminilogía
+
+- On-policy: Los datos que usamos para actualizar la política son generados por la
+  misma política
+
+- Episódico: en CartPole, el juego se termina/es finito, ya sea cuando el palo
+  se cae o cuando llegamos a un $T$ máximo.
+  
+== PPO
+
+La mayoría de los métodos de gradiente de política funcionan calculando un estimador del gradiente de política de la forma:
+
+$
+  hat(g) = hat(EE)_t [gradient_theta log pi_theta (a_t | s_t) A_t]
+$
+
+Para poder actualizar nuestra politica de manera más frecuente pero mitigando el
+hecho de que las roll outs vienen de otra distribución, podemos usar importance
+sampling:
+$
+  EE_(x ~ p) [f(x)] = EE_q [p(x)/q(x) f(x)]
+$
+
+Luego
+$
+  EE_(pi_theta) [hat(A_t)]
+  = EE_(pi_"old") [(pi_theta (a | s))/(pi_"old" (a | s)) hat(A_t)]
+$
+definamos:
+$
+  r_(theta) = pi_theta
+$
+
+Lo que PPO propone es
+$
+  L_"clip" (theta) = hat(EE)_t [min(
+    r_t (theta) hat(A)_t,
+    "clip"( r_t (theta), 1-epsilon, 1+epsilon )hat(A)_t
+  )]
+$
+Y en addición a clipping, un pénalti KL:
+$
+  L_"KL" (theta)
+  = hat(EE)_t [
+    (pi_theta (a_t | s_t))/(pi_"old" (a_t | s_t))A_t
+    - beta "KL"[pi_"old" (dot.c | s_t), pi_theta (dot.c | s_t)]
+  ]
+$
+
+Finalmente, la función de pérdida completa combina estos términos:
+$
+  L^("CLIP"+V F+S) (theta) = hat(EE)_t [
+    L_t^"CLIP" (theta) - c_1 L_t^(V F) (theta) + c_2 S[pi_theta](s_t)
+  ]
+$
 
 
 
 
-== GRPO
 
-Group Relative Policy Optimization (GRPO) es un algoritmo de optimización de políticas.
-
-Conceptos clave:
-- Optimización relativa de grupo
-- Mejora sobre PPO
-- Eficiencia de muestras
-- Estabilidad en entrenamiento
-
-= GRPO en Detalle
+= GRPO
 
 == Fundamentos de GRPO
 
-Principios básicos del algoritmo:
+Basicamente PPO pero:
 
-- Comparación dentro de grupos
-- Normalización relativa de recompensas
-- Reducción de varianza
-- Mejor convergencia
+- No hay modelo crítico
+- La baseline se estima de scores grupales
 
-== Ventajas de GRPO
+#pagebreak(weak: true)
 
-Beneficios sobre métodos tradicionales:
+Para cada pregunta $q$ (for question), se muestrea un grupo de outputs
+${o_1, ... o_G}$ de $pi_"old"$ y se optimiza $pi_theta$
 
-- Mayor estabilidad
-- Menos hiperparámetros sensibles
-- Mejor uso de datos
-- Escalabilidad mejorada
+$
+  J_"GRPO" = EE_(q, {o_1, ..., o_G}) \ [
+  1/G sum_(i=1)^G (
+    min(
+      (pi_theta (o_i|q))/(pi_"old" (o_i|q)) A_i,
+      "clip"((pi_theta (o_i|q))/(pi_"old" (o_i|q)), 1-epsilon, 1+epsilon)A_i
+    )
+  ) \
+  - beta "KL"(pi_theta || pi_"ref")
+  ]
+$
 
-= DeepSeek R1 y GRPO
-
-== Integración
-
-Cómo GRPO mejora el entrenamiento de R1:
-
-- Optimización de razonamiento
-- Alineación con preferencias humanas
-- Entrenamiento más eficiente
-- Mejor generalización
-
-== Resultados
-
-Métricas de rendimiento observadas:
-
-- Mejora en benchmarks de razonamiento
-- Reducción de alucinaciones
-- Mayor consistencia
-- Eficiencia computacional
-
-= Conclusión
 
 == Resumen
 
 Puntos clave:
 
 - DeepSeek R1 demuestra avances en razonamiento
+- GRPO es PPO menos critico plus group score as baseline
 - GRPO ofrece optimización robusta
 - Combinación prometedora para LLMs
-- Futuras direcciones de investigación
 
 Gracias por su atención!
