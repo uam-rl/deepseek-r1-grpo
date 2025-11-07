@@ -6,6 +6,8 @@ on:
       - master
     paths:
       - "src/**"
+      - ".github/workflows/**"
+      - "requirements.txt"
   pull_request:
     branches:
       - master
@@ -20,6 +22,9 @@ jobs:
        (github.event.pull_request.author_association == 'OWNER' ||
         github.event.pull_request.author_association == 'COLLABORATOR'))
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       pages: write
       id-token: write
@@ -29,23 +34,44 @@ jobs:
       - name: Setup Typst
         uses: typst-community/setup-typst@v3
 
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: "pip"
+
+      - name: Install touying for HTML generation
+        run: pip install -r requirements.txt
+
       - name: Make build dir
         run: mkdir -p build
 
-      - name: Build PDF slides (16:9)
-        run: typst compile src/main.typ build/slides.pdf
+      - name: Build HTML slides
+        run: |
+          # Spanish versions (default)
+          touying compile --root=src --output="build/index.html"                                       src/main.typ
+          touying compile --root=src --output="build/4-3.html"   --sys-inputs '{"aspect-ratio":"4-3"}' src/main.typ
+          # English versions
+          touying compile --root=src --output="build/en.html"                                          src/main-en.typ
+          touying compile --root=src --output="build/en-4-3.html" --sys-inputs '{"aspect-ratio":"4-3"}' src/main-en.typ
 
-      - name: Build PDF slides (4:3)
-        run: typst compile src/main.typ build/slides-4-3.pdf --input aspect-ratio="4-3"
+      - name: Build PDF slides
+        run: |
+          # Spanish versions
+          typst compile src/main.typ    build/diapositivas.pdf
+          typst compile src/main.typ    build/diapositivas-4-3.pdf --input aspect-ratio="4-3"
+          # English versions
+          typst compile src/main-en.typ build/slides-en.pdf
+          typst compile src/main-en.typ build/slides-en-4-3.pdf    --input aspect-ratio="4-3"
 
-      - name: Build PDF handout (16:9)
-        run: typst compile src/main.typ build/handout.pdf --input handout="true"
-
-      - name: Build PDF handout (4:3)
-        run: typst compile src/main.typ build/handout-4-3.pdf --input handout="true" --input aspect-ratio="4-3"
-
-      - name: Copy main PDF as index
-        run: cp build/slides.pdf build/index.pdf
+      - name: Build PDF handouts
+        run: |
+          # Spanish versions
+          typst compile src/main.typ    build/handout.pdf     --input handout="true"
+          typst compile src/main.typ    build/handout-4-3.pdf --input handout="true" --input aspect-ratio="4-3"
+          # English versions
+          typst compile src/main-en.typ build/handout-en.pdf     --input handout="true"
+          typst compile src/main-en.typ build/handout-en-4-3.pdf --input handout="true" --input aspect-ratio="4-3"
 
 
       - name: Upload artifact

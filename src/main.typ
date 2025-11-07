@@ -8,11 +8,11 @@
   align: horizon,
   config-common(handout: sys.inputs.at("handout", default: "false") == "true"),
   config-info(
-    title: [State of Reinforcement Learning],
-    subtitle: [Late 2025 Overview],
-    author: [UAM RL Team],
+    title: [Estado del Aprendizaje por Refuerzo],
+    subtitle: [Panorama a Finales de 2025],
+    author: [Equipo UAM RL],
   ),
-  footer-a: [UAM RL Team],
+  footer-a: [Equipo UAM RL],
 )
 
 // --- Configuraciones Generales ---
@@ -23,68 +23,68 @@
 
 #title-slide()
 
-= Introduction
+= Introducción
 
-== What is Reinforcement Learning?
+== ¿Qué es el Aprendizaje por Refuerzo?
 
-Reinforcement Learning (RL) is a type of machine learning where an agent learns to make decisions by interacting with an environment.
+El Aprendizaje por Refuerzo (RL) es un tipo de aprendizaje automático donde un agente aprende a tomar decisiones mediante la interacción con un entorno.
 
-Key concepts:
-- Agent
-- Environment
-- Actions
-- Rewards
-- Policy
+Conceptos clave:
+- Agente
+- Entorno
+- Acciones
+- Recompensas
+- Política
 
-== RL Applications
+== Aplicaciones de RL
 
-Main application areas in 2025:
+Principales áreas de aplicación en 2025:
 
-- Robotics and autonomous systems
-- Game playing and simulations
-- Resource optimization
-- Healthcare and drug discovery
-- Finance and trading
+- Robótica y sistemas autónomos
+- Juegos y simulaciones
+- Optimización de recursos
+- Salud y descubrimiento de fármacos
+- Finanzas y trading
 
-= Recent Advances
+= Avances Recientes
 
-== Model-Based RL
+== RL Basado en Modelos
 
-Recent progress in model-based reinforcement learning:
+Progreso reciente en aprendizaje por refuerzo basado en modelos:
 
-- Improved world models
-- Better sample efficiency
-- Integration with large language models
-- Hybrid approaches combining model-free and model-based methods
+- Modelos del mundo mejorados
+- Mejor eficiencia en muestras
+- Integración con modelos de lenguaje grandes
+- Enfoques híbridos que combinan métodos con y sin modelo
 
-== Policy Gradient Methods
+== Métodos de Gradiente de Política
 
-Key developments:
+Desarrollos clave:
 
-- Trust region optimization
-- Actor-critic architectures
-- Parallelized training methods
-- Stability improvements
+- Optimización de región de confianza
+- Arquitecturas actor-crítico
+- Métodos de entrenamiento paralelizados
+- Mejoras en estabilidad
 
-= Future Directions
+= Direcciones Futuras
 
-== Open Challenges
+== Desafíos Abiertos
 
-Current challenges in RL research:
+Desafíos actuales en investigación de RL:
 
-- Sample efficiency
-- Generalization across tasks
-- Safety and robustness
-- Scaling to complex environments
-- Interpretability
+- Eficiencia en muestras
+- Generalización entre tareas
+- Seguridad y robustez
+- Escalado a entornos complejos
+- Interpretabilidad
 
-== Conclusion
+== Conclusión
 
-Summary:
+Resumen:
 
-- RL continues to advance rapidly
-- New applications emerging
-- Significant challenges remain
-- Exciting opportunities ahead
+- RL continúa avanzando rápidamente
+- Nuevas aplicaciones emergentes
+- Desafíos significativos permanecen
+- Emocionantes oportunidades por delante
 
-Thank you for your attention!
+Gracias por su atención!
